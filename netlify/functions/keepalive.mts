@@ -1,6 +1,6 @@
 // Fonction planifiée Netlify : un petit appel quotidien à Supabase
 // pour éviter que le projet gratuit ne soit mis en pause après 7 jours sans activité.
-export default async () => {
+const keepalive = async () => {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const key = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
   if (!url || !key) return new Response("not configured", { status: 200 });
@@ -11,5 +11,7 @@ export default async () => {
   });
   return new Response(res.ok ? "ok" : `error ${res.status}`, { status: res.ok ? 200 : 500 });
 };
+
+export default keepalive;
 
 export const config = { schedule: "@daily" };

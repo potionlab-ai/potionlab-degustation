@@ -1,26 +1,88 @@
 @import "tailwindcss";
 
+/* Identité PotionLab */
+@theme {
+  --font-sans: "Outfit Variable", "Outfit", ui-sans-serif, system-ui, sans-serif;
+
+  --color-ink: #2b2b2b;
+  --color-muted: #6e6862;
+  --color-faint: #a39d97;
+  --color-paper: #f7f5f2;
+  --color-card: #ffffff;
+  --color-line: #e8e3dd;
+  --color-rose: #e8457a;
+  --color-coral: #f28c5b;
+  --color-blush: #fdeef2;
+
+  /* Graphiques « Pas assez / Juste bien / Trop » */
+  --color-jar-low: #6c8fd9;
+  --color-jar-ok: #2f9e78;
+  --color-jar-high: #e8457a;
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  color-scheme: light;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+html,
+body {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@utility bg-brand {
+  background-image: linear-gradient(120deg, #e8457a 0%, #f28c5b 100%);
+}
+
+@utility text-brand {
+  background-image: linear-gradient(120deg, #e8457a 0%, #f28c5b 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Fines lignes de « papier de labo » */
+@utility bg-lab-grid {
+  background-image:
+    linear-gradient(to right, rgb(43 43 43 / 0.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(43 43 43 / 0.045) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+@layer components {
+  .card {
+    @apply rounded-3xl border border-line bg-card shadow-[0_1px_2px_rgb(43_43_43/0.04),0_8px_24px_-12px_rgb(43_43_43/0.12)];
+  }
+  .kicker {
+    @apply text-[11px] font-medium uppercase tracking-[0.18em] text-muted;
+  }
+  .btn-primary {
+    @apply bg-brand inline-flex min-h-12 items-center justify-center gap-2 rounded-full px-6 text-base font-medium text-white shadow-[0_8px_20px_-8px_rgb(232_69_122/0.6)] transition hover:brightness-105 active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  .btn-secondary {
+    @apply inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-line bg-white px-5 text-base font-medium text-ink transition hover:border-ink/30 active:scale-[0.99] disabled:opacity-50;
+  }
+  .btn-ghost {
+    @apply inline-flex min-h-10 items-center justify-center gap-1.5 rounded-full px-3 text-sm font-medium text-muted transition hover:bg-ink/5 hover:text-ink;
+  }
+  .input {
+    @apply w-full rounded-2xl border border-line bg-white px-4 py-3 text-base text-ink placeholder:text-faint outline-none transition focus:border-rose focus:ring-4 focus:ring-rose/15;
+  }
+  .label {
+    @apply mb-1.5 block text-sm font-medium text-ink;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+:focus-visible {
+  outline: 2px solid var(--color-rose);
+  outline-offset: 2px;
+}
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
 }

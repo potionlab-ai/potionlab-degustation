@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="168" height="36" viewBox="0 0 168 36" fill="none">
+  <!-- LOGO PROVISOIRE : remplacez ce fichier par le vrai logo PotionLab (même nom : public/logo.svg) -->
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#E8457A"/>
+      <stop offset="1" stop-color="#F28C5B"/>
+    </linearGradient>
+  </defs>
+  <path d="M11 4h10M13 4v9.5L5.6 27.2A3.2 3.2 0 0 0 8.4 32h15.2a3.2 3.2 0 0 0 2.8-4.8L19 13.5V4" stroke="#2B2B2B" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M8.2 24h15.6l2.6 3.2A3.2 3.2 0 0 1 23.6 32H8.4a3.2 3.2 0 0 1-2.8-4.8z" fill="url(#g)"/>
+  <text x="38" y="25" font-family="Outfit, Arial, sans-serif" font-size="21" font-weight="600" letter-spacing="-0.4" fill="#2B2B2B">Potion<tspan fill="url(#g)">Lab</tspan></text>
+</svg>

@@ -1,0 +1,117 @@
+{
+  "langName": "English",
+  "welcome": {
+    "kicker": "Formulation Kit · Explorer Edition",
+    "title": "Welcome to the lab",
+    "intro": "You've received 4 cans: 4 versions of the same recipe. Your feedback will help us find the right one.",
+    "codeLabel": "Your code",
+    "codeHelp": "It's handwritten on the card in your box.",
+    "codePlaceholder": "K7P-M4X",
+    "submit": "Enter the lab",
+    "checking": "Checking…",
+    "privacy": "Your answers stay confidential and are only read by the PotionLab team.",
+    "errors": {
+      "empty": "Enter the code written on your card.",
+      "invalid_code": "This code doesn't match any tasting. Please check it on your card (example: K7P-M4X).",
+      "too_many_attempts": "Too many attempts. Please wait 15 minutes and try again.",
+      "network": "Can't connect. Check your connection and try again."
+    }
+  },
+  "project": {
+    "for": "For {client}",
+    "howTitle": "How to taste",
+    "how1": "Well chilled, around 4 °C (39 °F)",
+    "how2": "In order, from A to D",
+    "how3": "A sip of water between each can",
+    "iterationsTitle": "The 4 versions",
+    "duration": "About 10 minutes · your answers are saved automatically",
+    "start": "Start with can A",
+    "resume": "Pick up where I left off"
+  },
+  "can": {
+    "title": "Can {letter}",
+    "progress": "Step {current} of {total}",
+    "whatChanges": "What changes",
+    "overallTitle": "Overall, how much do you like it?",
+    "hedonic": [
+      "I dislike it extremely",
+      "I dislike it very much",
+      "I dislike it",
+      "I dislike it slightly",
+      "I neither like nor dislike it",
+      "I like it slightly",
+      "I like it",
+      "I like it very much",
+      "I love it"
+    ],
+    "pickNote": "Tap a score from 1 to 9",
+    "jarTitle": "For each attribute, it's…",
+    "jar": {
+      "low": "Not enough",
+      "ok": "Just right",
+      "high": "Too much"
+    },
+    "moreTitle": "A few more questions",
+    "multipleHint": "Several answers possible",
+    "scaleLow": "Not at all",
+    "scaleHigh": "Extremely",
+    "textPlaceholder": "Your answer…",
+    "commentLabel": "Any comment on can {letter}?",
+    "commentPlaceholder": "What you liked, what bothered you…",
+    "optional": "optional",
+    "next": "Next can",
+    "toFinal": "Final step",
+    "back": "Back",
+    "missing": "{count} answer(s) missing, highlighted in pink.",
+    "required": "Answer required"
+  },
+  "final": {
+    "title": "Your verdict",
+    "rankingTitle": "Rank the 4 versions",
+    "rankingHelp": "From your favourite (top) to your least favourite. Drag, or use the arrows.",
+    "rankingPrefilled": "Pre-sorted from your scores: adjust if needed.",
+    "moveUp": "Move can {letter} up",
+    "moveDown": "Move can {letter} down",
+    "drag": "Drag can {letter}",
+    "rank": [
+      "1st",
+      "2nd",
+      "3rd",
+      "4th"
+    ],
+    "keepTitle": "What would you keep from each version?",
+    "keepPlaceholder": "E.g. the freshness, the spicy kick…",
+    "generalTitle": "A word for the team?",
+    "generalPlaceholder": "Your overall impression, an idea, a wish…",
+    "contactTitle": "Your details",
+    "contactHelp": "So we can get back to you.",
+    "name": "Name",
+    "email": "Email",
+    "consent": "I agree that PotionLab may use my answers to develop this drink. They are never shared with third parties and I can ask for them to be deleted at any time at {email}.",
+    "consentRequired": "Please tick this box to send your answers.",
+    "emailInvalid": "This email doesn't look valid.",
+    "submit": "Send my answers",
+    "sending": "Sending…",
+    "error": "Sending failed. Your answers are kept: please try again in a moment."
+  },
+  "thanks": {
+    "title": "Thank you!",
+    "text": "Your answers have reached the lab. Our team is analysing them to fine-tune your recipe.",
+    "cta": "Discover PotionLab",
+    "another": "Someone else wants to give feedback"
+  },
+  "already": {
+    "title": "Answers already sent for this code",
+    "text": "Someone has already sent their answers with this code. Did you taste too? Your opinion counts.",
+    "cta": "Give my feedback"
+  },
+  "common": {
+    "saved": "Saved",
+    "saving": "Saving…",
+    "offline": "Offline: kept on this device",
+    "language": "Language",
+    "changeCode": "Use another code",
+    "privacyEmail": "production@potionlab.ai",
+    "loading": "Loading…"
+  }
+}

@@ -1,0 +1,117 @@
+{
+  "langName": "Français",
+  "welcome": {
+    "kicker": "Formulation Kit · Explorer Edition",
+    "title": "Bienvenue au labo",
+    "intro": "Vous avez reçu 4 canettes : 4 versions d'une même recette. Votre avis va nous aider à trouver la bonne.",
+    "codeLabel": "Votre code",
+    "codeHelp": "Il est écrit à la main sur la carte de votre boîte.",
+    "codePlaceholder": "K7P-M4X",
+    "submit": "Entrer au labo",
+    "checking": "Vérification…",
+    "privacy": "Vos réponses restent confidentielles et ne sont lues que par l'équipe PotionLab.",
+    "errors": {
+      "empty": "Entrez le code écrit sur votre carte.",
+      "invalid_code": "Ce code ne correspond à aucune dégustation. Vérifiez-le sur la carte (exemple : K7P-M4X).",
+      "too_many_attempts": "Trop d'essais. Patientez 15 minutes puis réessayez.",
+      "network": "Connexion impossible. Vérifiez votre réseau et réessayez."
+    }
+  },
+  "project": {
+    "for": "Pour {client}",
+    "howTitle": "Comment déguster",
+    "how1": "Bien frais, autour de 4 °C",
+    "how2": "Dans l'ordre, de A à D",
+    "how3": "Un peu d'eau entre chaque canette",
+    "iterationsTitle": "Les 4 versions",
+    "duration": "Environ 10 minutes · vos réponses sont sauvegardées automatiquement",
+    "start": "Commencer par la canette A",
+    "resume": "Reprendre où j'en étais"
+  },
+  "can": {
+    "title": "Canette {letter}",
+    "progress": "Étape {current} sur {total}",
+    "whatChanges": "Ce qui change",
+    "overallTitle": "Dans l'ensemble, vous aimez ?",
+    "hedonic": [
+      "Je n'aime pas du tout",
+      "Je n'aime vraiment pas",
+      "Je n'aime pas",
+      "Je n'aime pas trop",
+      "Ni j'aime, ni je n'aime pas",
+      "J'aime un peu",
+      "J'aime",
+      "J'aime beaucoup",
+      "J'adore"
+    ],
+    "pickNote": "Touchez une note de 1 à 9",
+    "jarTitle": "Pour chaque critère, c'est…",
+    "jar": {
+      "low": "Pas assez",
+      "ok": "Juste bien",
+      "high": "Trop"
+    },
+    "moreTitle": "Encore quelques questions",
+    "multipleHint": "Plusieurs réponses possibles",
+    "scaleLow": "Pas du tout",
+    "scaleHigh": "Énormément",
+    "textPlaceholder": "Votre réponse…",
+    "commentLabel": "Un commentaire sur la canette {letter} ?",
+    "commentPlaceholder": "Ce que vous avez aimé, ce qui vous a gêné…",
+    "optional": "facultatif",
+    "next": "Canette suivante",
+    "toFinal": "Dernière étape",
+    "back": "Retour",
+    "missing": "Il manque {count} réponse(s), signalée(s) en rose.",
+    "required": "Réponse requise"
+  },
+  "final": {
+    "title": "Votre verdict",
+    "rankingTitle": "Classez les 4 versions",
+    "rankingHelp": "De votre préférée (en haut) à la moins appréciée. Faites glisser, ou utilisez les flèches.",
+    "rankingPrefilled": "Pré-classé selon vos notes : ajustez si besoin.",
+    "moveUp": "Monter la canette {letter}",
+    "moveDown": "Descendre la canette {letter}",
+    "drag": "Faire glisser la canette {letter}",
+    "rank": [
+      "1re",
+      "2e",
+      "3e",
+      "4e"
+    ],
+    "keepTitle": "Que garderiez-vous de chaque version ?",
+    "keepPlaceholder": "Ex. : la fraîcheur, le côté épicé…",
+    "generalTitle": "Un mot pour l'équipe ?",
+    "generalPlaceholder": "Votre impression générale, une idée, une envie…",
+    "contactTitle": "Vos coordonnées",
+    "contactHelp": "Pour que l’on puisse vous recontacter.",
+    "name": "Nom",
+    "email": "Email",
+    "consent": "J'accepte que PotionLab utilise mes réponses pour développer cette boisson. Elles ne sont jamais partagées avec des tiers et je peux demander leur suppression à tout moment à {email}.",
+    "consentRequired": "Merci de cocher cette case pour envoyer vos réponses.",
+    "emailInvalid": "Cet email ne semble pas valide.",
+    "submit": "Envoyer mes réponses",
+    "sending": "Envoi…",
+    "error": "L'envoi a échoué. Vos réponses sont gardées : réessayez dans un instant."
+  },
+  "thanks": {
+    "title": "Merci !",
+    "text": "Vos réponses sont bien arrivées au labo. Notre équipe les analyse pour affiner votre recette.",
+    "cta": "Découvrir PotionLab",
+    "another": "Une autre personne veut donner son avis"
+  },
+  "already": {
+    "title": "Déjà des réponses pour ce code",
+    "text": "Quelqu’un a déjà envoyé ses réponses avec ce code. Vous avez goûté aussi ? Votre avis compte.",
+    "cta": "Donner mon avis"
+  },
+  "common": {
+    "saved": "Sauvegardé",
+    "saving": "Sauvegarde…",
+    "offline": "Hors ligne : gardé sur cet appareil",
+    "language": "Langue",
+    "changeCode": "Changer de code",
+    "privacyEmail": "production@potionlab.ai",
+    "loading": "Chargement…"
+  }
+}

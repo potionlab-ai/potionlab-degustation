@@ -1,0 +1,117 @@
+{
+  "langName": "Español",
+  "welcome": {
+    "kicker": "Formulation Kit · Explorer Edition",
+    "title": "Bienvenido al laboratorio",
+    "intro": "Ha recibido 4 latas: 4 versiones de una misma receta. Su opinión nos ayudará a encontrar la buena.",
+    "codeLabel": "Su código",
+    "codeHelp": "Está escrito a mano en la tarjeta de su caja.",
+    "codePlaceholder": "K7P-M4X",
+    "submit": "Entrar al laboratorio",
+    "checking": "Comprobando…",
+    "privacy": "Sus respuestas son confidenciales y solo las lee el equipo de PotionLab.",
+    "errors": {
+      "empty": "Introduzca el código escrito en su tarjeta.",
+      "invalid_code": "Este código no corresponde a ninguna cata. Compruébelo en la tarjeta (ejemplo: K7P-M4X).",
+      "too_many_attempts": "Demasiados intentos. Espere 15 minutos y vuelva a intentarlo.",
+      "network": "No hay conexión. Compruebe su red y vuelva a intentarlo."
+    }
+  },
+  "project": {
+    "for": "Para {client}",
+    "howTitle": "Cómo catar",
+    "how1": "Bien fría, a unos 4 °C",
+    "how2": "En orden, de la A a la D",
+    "how3": "Un poco de agua entre cada lata",
+    "iterationsTitle": "Las 4 versiones",
+    "duration": "Unos 10 minutos · sus respuestas se guardan automáticamente",
+    "start": "Empezar por la lata A",
+    "resume": "Continuar donde lo dejé"
+  },
+  "can": {
+    "title": "Lata {letter}",
+    "progress": "Paso {current} de {total}",
+    "whatChanges": "Qué cambia",
+    "overallTitle": "En general, ¿le gusta?",
+    "hedonic": [
+      "Me disgusta muchísimo",
+      "Me disgusta mucho",
+      "Me disgusta",
+      "Me disgusta un poco",
+      "Ni me gusta ni me disgusta",
+      "Me gusta un poco",
+      "Me gusta",
+      "Me gusta mucho",
+      "Me encanta"
+    ],
+    "pickNote": "Toque una nota del 1 al 9",
+    "jarTitle": "Para cada criterio, está…",
+    "jar": {
+      "low": "Le falta",
+      "ok": "En su punto",
+      "high": "Demasiado"
+    },
+    "moreTitle": "Unas preguntas más",
+    "multipleHint": "Varias respuestas posibles",
+    "scaleLow": "Nada",
+    "scaleHigh": "Muchísimo",
+    "textPlaceholder": "Su respuesta…",
+    "commentLabel": "¿Algún comentario sobre la lata {letter}?",
+    "commentPlaceholder": "Lo que le gustó, lo que le molestó…",
+    "optional": "opcional",
+    "next": "Lata siguiente",
+    "toFinal": "Último paso",
+    "back": "Volver",
+    "missing": "Faltan {count} respuesta(s), marcadas en rosa.",
+    "required": "Respuesta obligatoria"
+  },
+  "final": {
+    "title": "Su veredicto",
+    "rankingTitle": "Ordene las 4 versiones",
+    "rankingHelp": "De su favorita (arriba) a la que menos le gustó. Arrastre o use las flechas.",
+    "rankingPrefilled": "Preordenado según sus notas: ajústelo si hace falta.",
+    "moveUp": "Subir la lata {letter}",
+    "moveDown": "Bajar la lata {letter}",
+    "drag": "Arrastrar la lata {letter}",
+    "rank": [
+      "1.ª",
+      "2.ª",
+      "3.ª",
+      "4.ª"
+    ],
+    "keepTitle": "¿Qué conservaría de cada versión?",
+    "keepPlaceholder": "P. ej.: el frescor, el toque picante…",
+    "generalTitle": "¿Unas palabras para el equipo?",
+    "generalPlaceholder": "Su impresión general, una idea, un deseo…",
+    "contactTitle": "Sus datos",
+    "contactHelp": "Para poder contactarle.",
+    "name": "Nombre",
+    "email": "Correo electrónico",
+    "consent": "Acepto que PotionLab utilice mis respuestas para desarrollar esta bebida. Nunca se comparten con terceros y puedo pedir que se borren en cualquier momento escribiendo a {email}.",
+    "consentRequired": "Marque esta casilla para enviar sus respuestas.",
+    "emailInvalid": "Este correo no parece válido.",
+    "submit": "Enviar mis respuestas",
+    "sending": "Enviando…",
+    "error": "El envío ha fallado. Sus respuestas están guardadas: inténtelo de nuevo en un momento."
+  },
+  "thanks": {
+    "title": "¡Gracias!",
+    "text": "Sus respuestas han llegado al laboratorio. Nuestro equipo las analiza para afinar su receta.",
+    "cta": "Descubrir PotionLab",
+    "another": "Otra persona quiere dar su opinión"
+  },
+  "already": {
+    "title": "Ya hay respuestas para este código",
+    "text": "Alguien ya ha enviado sus respuestas con este código. ¿Usted también lo ha probado? Su opinión cuenta.",
+    "cta": "Dar mi opinión"
+  },
+  "common": {
+    "saved": "Guardado",
+    "saving": "Guardando…",
+    "offline": "Sin conexión: guardado en este dispositivo",
+    "language": "Idioma",
+    "changeCode": "Cambiar de código",
+    "privacyEmail": "production@potionlab.ai",
+    "loading": "Cargando…"
+  }
+}

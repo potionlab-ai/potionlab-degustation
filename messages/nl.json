@@ -1,0 +1,117 @@
+{
+  "langName": "Nederlands",
+  "welcome": {
+    "kicker": "Formulation Kit · Explorer Edition",
+    "title": "Welkom in het lab",
+    "intro": "U hebt 4 blikjes ontvangen: 4 versies van hetzelfde recept. Uw mening helpt ons de juiste te vinden.",
+    "codeLabel": "Uw code",
+    "codeHelp": "Hij staat met de hand geschreven op de kaart in uw doos.",
+    "codePlaceholder": "K7P-M4X",
+    "submit": "Naar het lab",
+    "checking": "Controleren…",
+    "privacy": "Uw antwoorden blijven vertrouwelijk en worden enkel door het PotionLab-team gelezen.",
+    "errors": {
+      "empty": "Vul de code in die op uw kaart staat.",
+      "invalid_code": "Deze code hoort bij geen enkele proeverij. Controleer hem op de kaart (voorbeeld: K7P-M4X).",
+      "too_many_attempts": "Te veel pogingen. Wacht 15 minuten en probeer opnieuw.",
+      "network": "Geen verbinding. Controleer uw netwerk en probeer opnieuw."
+    }
+  },
+  "project": {
+    "for": "Voor {client}",
+    "howTitle": "Zo proeft u",
+    "how1": "Goed gekoeld, rond 4 °C",
+    "how2": "In volgorde, van A tot D",
+    "how3": "Een slokje water tussen elk blikje",
+    "iterationsTitle": "De 4 versies",
+    "duration": "Ongeveer 10 minuten · uw antwoorden worden automatisch bewaard",
+    "start": "Begin met blikje A",
+    "resume": "Verdergaan waar ik was"
+  },
+  "can": {
+    "title": "Blikje {letter}",
+    "progress": "Stap {current} van {total}",
+    "whatChanges": "Wat er verandert",
+    "overallTitle": "Hoe lekker vindt u het in het algemeen?",
+    "hedonic": [
+      "Helemaal niet lekker",
+      "Echt niet lekker",
+      "Niet lekker",
+      "Niet zo lekker",
+      "Niet lekker, niet vies",
+      "Een beetje lekker",
+      "Lekker",
+      "Heel lekker",
+      "Heerlijk"
+    ],
+    "pickNote": "Tik een score van 1 tot 9",
+    "jarTitle": "Per kenmerk is het…",
+    "jar": {
+      "low": "Te weinig",
+      "ok": "Precies goed",
+      "high": "Te veel"
+    },
+    "moreTitle": "Nog enkele vragen",
+    "multipleHint": "Meerdere antwoorden mogelijk",
+    "scaleLow": "Helemaal niet",
+    "scaleHigh": "Enorm",
+    "textPlaceholder": "Uw antwoord…",
+    "commentLabel": "Opmerkingen over blikje {letter}?",
+    "commentPlaceholder": "Wat u lekker vond, wat u stoorde…",
+    "optional": "optioneel",
+    "next": "Volgend blikje",
+    "toFinal": "Laatste stap",
+    "back": "Terug",
+    "missing": "Er ontbreken {count} antwoord(en), in roze aangeduid.",
+    "required": "Antwoord vereist"
+  },
+  "final": {
+    "title": "Uw oordeel",
+    "rankingTitle": "Rangschik de 4 versies",
+    "rankingHelp": "Van uw favoriet (bovenaan) tot de minst lekkere. Sleep, of gebruik de pijltjes.",
+    "rankingPrefilled": "Voorgesorteerd volgens uw scores: pas aan indien nodig.",
+    "moveUp": "Blikje {letter} omhoog",
+    "moveDown": "Blikje {letter} omlaag",
+    "drag": "Blikje {letter} slepen",
+    "rank": [
+      "1e",
+      "2e",
+      "3e",
+      "4e"
+    ],
+    "keepTitle": "Wat zou u van elke versie behouden?",
+    "keepPlaceholder": "Bv. de frisheid, het pittige…",
+    "generalTitle": "Een woordje voor het team?",
+    "generalPlaceholder": "Uw algemene indruk, een idee, een wens…",
+    "contactTitle": "Uw gegevens",
+    "contactHelp": "Zodat we contact met u kunnen opnemen.",
+    "name": "Naam",
+    "email": "E-mail",
+    "consent": "Ik ga ermee akkoord dat PotionLab mijn antwoorden gebruikt om deze drank te ontwikkelen. Ze worden nooit met derden gedeeld en ik kan op elk moment vragen ze te verwijderen via {email}.",
+    "consentRequired": "Vink dit vakje aan om uw antwoorden te versturen.",
+    "emailInvalid": "Dit e-mailadres lijkt niet geldig.",
+    "submit": "Mijn antwoorden versturen",
+    "sending": "Versturen…",
+    "error": "Versturen mislukt. Uw antwoorden zijn bewaard: probeer het zo dadelijk opnieuw."
+  },
+  "thanks": {
+    "title": "Bedankt!",
+    "text": "Uw antwoorden zijn goed aangekomen in het lab. Ons team analyseert ze om uw recept te verfijnen.",
+    "cta": "Ontdek PotionLab",
+    "another": "Iemand anders wil ook zijn mening geven"
+  },
+  "already": {
+    "title": "Al antwoorden voor deze code",
+    "text": "Iemand heeft met deze code al antwoorden verstuurd. Hebt u ook geproefd? Uw mening telt.",
+    "cta": "Mijn mening geven"
+  },
+  "common": {
+    "saved": "Bewaard",
+    "saving": "Bewaren…",
+    "offline": "Offline: bewaard op dit toestel",
+    "language": "Taal",
+    "changeCode": "Andere code",
+    "privacyEmail": "production@potionlab.ai",
+    "loading": "Laden…"
+  }
+}

@@ -21,15 +21,19 @@ import { beverageLabel } from "../modules";
 import { formatCode } from "../code";
 
 const FONT_DIR = path.join(process.cwd(), "src/assets/fonts");
-let fontsReady = false;
-function registerFonts() {
-  if (fontsReady) return;
-  Font.register({
-    family: "Outfit",
-    fonts: [400, 500, 600, 700].map((w) => ({ src: path.join(FONT_DIR, `Outfit-${w}.woff`), fontWeight: w })),
-  });
+let fontFamily: string | null = null;
+/** Enregistre Outfit ; si les fichiers sont absents sur l'hébergeur, repli sur Helvetica. */
+function registerFonts(): string {
+  if (fontFamily) return fontFamily;
+  const files = [400, 500, 600, 700].map((w) => ({ src: path.join(FONT_DIR, `Outfit-${w}.woff`), fontWeight: w }));
+  if (files.every((f) => fs.existsSync(f.src))) {
+    Font.register({ family: "Outfit", fonts: files });
+    fontFamily = "Outfit";
+  } else {
+    fontFamily = "Helvetica";
+  }
   Font.registerHyphenationCallback((word) => [word]);
-  fontsReady = true;
+  return fontFamily;
 }
 
 /** Logo PNG facultatif pour le PDF : src/assets/logo-pdf.png */
@@ -118,11 +122,11 @@ function Bar({ value, max, color }: { value: number | null; max: number; color: 
 }
 
 export function ResultsPdf({ qn, s: r }: { qn: Questionnaire; s: ResultsSummary }) {
-  registerFonts();
+  const family = registerFonts();
   const today = new Date().toLocaleDateString("fr-BE", { day: "numeric", month: "long", year: "numeric", timeZone: "Europe/Brussels" });
   return (
     <Document title={`PotionLab · ${qn.client_name} · ${qn.project_name}`} author="PotionLab">
-      <Page size="A4" style={s.page}>
+      <Page size="A4" style={[s.page, { fontFamily: family }]}>
         <View fixed>
           <GradientBand />
         </View>

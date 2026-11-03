@@ -17,7 +17,8 @@ résultats dans l'espace admin.
 | `src/app/admin/` | Espace admin (tableau de bord, création, résultats, bibliothèque) |
 | `src/lib/results.ts` | Calcul des pourcentages et synthèse « À garder / À corriger » |
 | `src/lib/pdf/` | Rapport PDF |
-| `supabase/migrations/` | Base de données : structure + sécurité (1), données de départ (2) |
+| `supabase/INSTALLATION.sql` | **Installation complète de la base** (à coller dans Supabase) |
+| `supabase/migrations/` | Les mêmes, en deux parties : structure + sécurité (1), données de départ (2) |
 | `supabase/03_admins.sql` | Liste des emails autorisés dans l'admin |
 
 ## Sécurité
@@ -39,4 +40,4 @@ LOCAL_DATABASE_URL=postgres://postgres@localhost:5432/potionlab npm run dev
 ```
 Admin local : `admin@potionlab.local` / `potionlab`. Code de démo : `DEMO-01`.
 
-Stack : Next.js 16 (App Router) · TypeScript · Tailwind CSS 4 · Supabase · Vercel.
+Stack : Next.js 16 (App Router) · TypeScript · Tailwind CSS 4 · Supabase · Netlify.

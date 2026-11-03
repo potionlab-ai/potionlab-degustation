@@ -5,7 +5,7 @@ import { CLIENT_FUNCTIONS, USE_SUPABASE, type ClientFunction } from "@/lib/backe
 import { localRpc } from "@/lib/backend/local-db";
 
 export async function POST(req: NextRequest) {
-  if (USE_SUPABASE || process.env.VERCEL) {
+  if (USE_SUPABASE || process.env.VERCEL || process.env.NETLIFY) {
     return NextResponse.json({ error: "disabled" }, { status: 404 });
   }
   const { fn, args } = (await req.json()) as { fn: ClientFunction; args: Record<string, unknown> };

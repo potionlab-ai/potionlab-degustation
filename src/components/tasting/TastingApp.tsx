@@ -183,6 +183,8 @@ export default function TastingApp() {
   // Démarrage : langue mémorisée, code mémorisé ou présent dans l'adresse ------
   useEffect(() => {
     const storedLang = lsGet<Lang>(LS_LANG);
+    // Lecture du stockage de l'appareil après le premier rendu (évite les écarts serveur/navigateur)
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setLangState(storedLang && LANGS.includes(storedLang) ? storedLang : detectLang());
     const urlCode = new URLSearchParams(window.location.search).get("code");
     const session = lsGet<Session>(LS_SESSION);
@@ -428,7 +430,7 @@ function SaveIndicator({ state, m }: { state: SaveState; m: Messages }) {
   const text = state === "saving" ? m.common.saving : state === "saved" ? m.common.saved : m.common.offline;
   return (
     <span className="inline-flex items-center gap-1" aria-live="polite">
-      {state === "saved" ? <IconCheck width={14} height={14} className="text-jar-ok" /> : <IconCloud width={14} height={14} />}
+      {state === "saved" ? <IconCheck width={14} height={14} className="text-[#2f9e78]" /> : <IconCloud width={14} height={14} />}
       {text}
     </span>
   );

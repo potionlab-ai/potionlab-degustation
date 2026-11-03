@@ -114,6 +114,7 @@ create policy responses_admin on public.responses
   for all to authenticated using (public.is_admin()) with check (public.is_admin());
 -- access_attempts : aucune politique => inaccessible sauf via les fonctions internes.
 
+grant usage on schema public to anon, authenticated;
 revoke all on all tables in schema public from anon;
 revoke all on all sequences in schema public from anon;
 revoke all on public.access_attempts from authenticated;
@@ -550,6 +551,11 @@ begin
 end;
 $$;
 
+-- Petit signe de vie quotidien (évite la mise en pause du projet Supabase gratuit).
+create or replace function public.ping()
+returns text language sql stable
+as $$ select 'ok'::text; $$;
+
 -- ---------------------------------------------------------------------
 -- Droits d'exécution
 -- ---------------------------------------------------------------------
@@ -559,6 +565,7 @@ grant execute on function public.client_open(text, uuid)                        
 grant execute on function public.client_save(text, uuid, jsonb, integer, text)                  to anon, authenticated;
 grant execute on function public.client_submit(text, uuid, jsonb, text, text, text, boolean)    to anon, authenticated;
 grant execute on function public.normalize_code(text)                                           to anon, authenticated;
+grant execute on function public.ping()                                                         to anon, authenticated;
 
 grant execute on function public.is_admin()                                to authenticated;
 grant execute on function public._require_admin()                          to authenticated;

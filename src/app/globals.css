@@ -15,9 +15,9 @@
   --color-blush: #fdeef2;
 
   /* Graphiques « Pas assez / Juste bien / Trop » */
-  --color-jar-low: #6c8fd9;
-  --color-jar-ok: #2f9e78;
-  --color-jar-high: #e8457a;
+  --color-jar-low: #4f78d0;
+  --color-jar-ok: #8a8279;
+  --color-jar-high: #e05a35;
 }
 
 :root {

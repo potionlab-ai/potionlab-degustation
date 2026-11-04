@@ -78,8 +78,12 @@ function Row({
     <li
       ref={setNodeRef}
       style={{ transform: CSS.Transform.toString(transform), transition }}
-      className={`flex items-center gap-2 rounded-2xl border bg-white p-2 pr-1.5 transition-shadow sm:gap-3 sm:p-3 ${
-        isDragging ? "z-10 border-rose/40 shadow-xl" : "border-line"
+      className={`relative flex items-center gap-2 rounded-2xl border bg-white p-2 pr-1.5 transition-shadow sm:gap-3 sm:p-3 ${
+        isDragging
+          ? "z-10 border-rose/40 shadow-xl"
+          : index === 0
+            ? "border-rose/35 shadow-[0_10px_24px_-14px_rgb(232_69_122/0.6)]"
+            : "border-line"
       }`}
     >
       <button
@@ -97,9 +101,16 @@ function Row({
       >
         {m.final.rank[index]}
       </span>
-      <CanIcon letter={item.letter} size={26} />
+      <CanIcon letter={item.letter} size={22} filled={index === 0} />
       <div className="min-w-0 flex-1">
-        <p className="font-medium leading-tight text-ink">{fmt(m.can.title, { letter: item.letter })}</p>
+        <p className="flex items-center gap-2 font-medium leading-tight text-ink">
+          {fmt(m.can.title, { letter: item.letter })}
+          {index === 0 && (
+            <span className="bg-brand rounded-full px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.12em] text-white">
+              {m.final.favourite}
+            </span>
+          )}
+        </p>
         {item.subtitle && <p className="truncate text-xs text-muted">{item.subtitle}</p>}
       </div>
       {item.score != null && (

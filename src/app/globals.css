@@ -1,23 +1,87 @@
 @import "tailwindcss";
 
-/* Identité PotionLab */
+/* =====================================================================
+   Identité PotionLab — alignée sur la boîte test (Formulation Kit) :
+   dégradé rose → corail, motif de points 2 couleurs, papier chaud,
+   petits titres roses soulignés, écriture au stylo bleu sur la carte.
+   ===================================================================== */
 @theme {
   --font-sans: "Outfit Variable", "Outfit", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  --font-hand: "Caveat", "Segoe Print", cursive;
 
   --color-ink: #2b2b2b;
-  --color-muted: #6e6862;
+  --color-muted: #6e6762;
   --color-faint: #a39d97;
-  --color-paper: #f7f5f2;
+  --color-paper: #f6f3ef;
   --color-card: #ffffff;
-  --color-line: #e8e3dd;
+  --color-line: #e7e1db;
   --color-rose: #e8457a;
   --color-coral: #f28c5b;
   --color-blush: #fdeef2;
+  --color-pen: #1f3a8a;
 
-  /* Graphiques « Pas assez / Juste bien / Trop » */
+  /* Graphiques « Pas assez / Juste bien / Trop » (validés daltonisme) */
   --color-jar-low: #4f78d0;
   --color-jar-ok: #8a8279;
   --color-jar-high: #e05a35;
+
+  --animate-rise: rise 0.55s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  --animate-float: float 6s ease-in-out infinite;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+@keyframes bubble {
+  0% {
+    transform: translateY(0) scale(0.6);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.9;
+  }
+  100% {
+    transform: translateY(-160px) scale(1);
+    opacity: 0;
+  }
+}
+@keyframes pop {
+  0% {
+    transform: scale(0.6);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.08);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes shine {
+  from {
+    background-position: 200% 0;
+  }
+  to {
+    background-position: -200% 0;
+  }
 }
 
 :root {
@@ -31,39 +95,89 @@ body {
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -webkit-tap-highlight-color: transparent;
+  text-rendering: optimizeLegibility;
+}
+
+/* Fond « studio » : lumière douce au centre, comme la présentation 3D */
+.studio {
+  background:
+    radial-gradient(120% 70% at 50% 0%, #ffffff 0%, rgb(255 255 255 / 0) 60%),
+    radial-gradient(90% 60% at 100% 100%, rgb(242 140 91 / 0.07) 0%, rgb(242 140 91 / 0) 60%),
+    radial-gradient(80% 60% at 0% 80%, rgb(232 69 122 / 0.06) 0%, rgb(232 69 122 / 0) 60%),
+    linear-gradient(180deg, #faf8f5 0%, #f3efea 100%);
+  background-attachment: fixed;
 }
 
 @utility bg-brand {
-  background-image: linear-gradient(120deg, #e8457a 0%, #f28c5b 100%);
+  background-image: linear-gradient(115deg, #e8457a 0%, #f28c5b 100%);
 }
 
 @utility text-brand {
-  background-image: linear-gradient(120deg, #e8457a 0%, #f28c5b 100%);
+  background-image: linear-gradient(115deg, #e8457a 0%, #f28c5b 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
 
-/* Fines lignes de « papier de labo » */
-@utility bg-lab-grid {
+/* Motif de points de la boîte (impression 2 couleurs) */
+@utility bg-dots {
   background-image:
-    linear-gradient(to right, rgb(43 43 43 / 0.045) 1px, transparent 1px),
-    linear-gradient(to bottom, rgb(43 43 43 / 0.045) 1px, transparent 1px);
-  background-size: 28px 28px;
+    radial-gradient(circle at center, rgb(232 69 122 / 0.55) 1.4px, transparent 1.6px),
+    radial-gradient(circle at center, rgb(242 140 91 / 0.5) 1.4px, transparent 1.6px);
+  background-size: 14px 14px;
+  background-position:
+    0 0,
+    7px 7px;
+}
+@utility bg-dots-light {
+  background-image: radial-gradient(circle at center, rgb(255 255 255 / 0.35) 1.2px, transparent 1.4px);
+  background-size: 9px 9px;
 }
 
 @layer components {
+  /* Panneau translucide (verre dépoli) */
   .card {
-    @apply rounded-3xl border border-line bg-card shadow-[0_1px_2px_rgb(43_43_43/0.04),0_8px_24px_-12px_rgb(43_43_43/0.12)];
+    @apply rounded-[22px] border border-white/80 bg-white/85 shadow-[0_1px_2px_rgb(60_40_30/0.05),0_12px_40px_-12px_rgb(60_40_30/0.14)] backdrop-blur-xl;
   }
+  .card-solid {
+    @apply rounded-[22px] border border-line bg-white shadow-[0_1px_2px_rgb(60_40_30/0.04),0_10px_30px_-14px_rgb(60_40_30/0.12)];
+  }
+  /* Petit titre rose souligné d'un trait dégradé (comme la présentation de la boîte) */
   .kicker {
+    @apply text-[11px] font-semibold uppercase tracking-[0.2em] text-rose;
+  }
+  .kicker-bar::after {
+    content: "";
+    display: block;
+    width: 32px;
+    height: 2px;
+    margin-top: 10px;
+    border-radius: 2px;
+    background-image: linear-gradient(90deg, #e8457a, #f28c5b);
+  }
+  .eyebrow {
     @apply text-[11px] font-medium uppercase tracking-[0.18em] text-muted;
   }
+  .display {
+    @apply font-semibold tracking-[-0.03em] text-balance;
+  }
   .btn-primary {
-    @apply bg-brand inline-flex min-h-12 items-center justify-center gap-2 rounded-full px-6 text-base font-medium text-white shadow-[0_8px_20px_-8px_rgb(232_69_122/0.6)] transition hover:brightness-105 active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-50;
+    @apply bg-brand relative inline-flex min-h-12 items-center justify-center gap-2 overflow-hidden rounded-full px-6 text-base font-medium text-white shadow-[0_10px_24px_-10px_rgb(232_69_122/0.75)] transition duration-200 hover:-translate-y-px hover:shadow-[0_14px_28px_-10px_rgb(232_69_122/0.8)] active:translate-y-0 active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  .btn-primary::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(110deg, transparent 30%, rgb(255 255 255 / 0.28) 50%, transparent 70%);
+    background-size: 250% 100%;
+    background-position: 200% 0;
+    pointer-events: none;
+  }
+  .btn-primary:hover::after {
+    animation: shine 1.1s ease;
   }
   .btn-secondary {
-    @apply inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-line bg-white px-5 text-base font-medium text-ink transition hover:border-ink/30 active:scale-[0.99] disabled:opacity-50;
+    @apply inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-line bg-white/90 px-5 text-base font-medium text-ink transition hover:border-ink/25 hover:bg-white active:scale-[0.99] disabled:opacity-50;
   }
   .btn-ghost {
     @apply inline-flex min-h-10 items-center justify-center gap-1.5 rounded-full px-3 text-sm font-medium text-muted transition hover:bg-ink/5 hover:text-ink;
@@ -74,11 +188,78 @@ body {
   .label {
     @apply mb-1.5 block text-sm font-medium text-ink;
   }
+  /* Segmenté façon présentation de la boîte */
+  .seg {
+    @apply inline-flex gap-0.5 rounded-full bg-ink/[0.06] p-[3px];
+  }
+  .seg > button,
+  .seg > a {
+    @apply rounded-full px-3 py-1.5 text-xs font-semibold tracking-wide text-muted transition;
+  }
+  .seg > [aria-pressed="true"],
+  .seg > [aria-current="page"] {
+    @apply bg-white text-ink shadow-[0_1px_4px_rgb(0_0_0/0.12)];
+  }
+  .hand {
+    font-family: var(--font-hand);
+    color: var(--color-pen);
+  }
+}
+
+/* Bulles qui montent (pétillance) */
+.bubbles {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.bubbles span {
+  position: absolute;
+  bottom: -10px;
+  border-radius: 9999px;
+  border: 1.5px solid rgb(232 69 122 / 0.35);
+  background: radial-gradient(circle at 30% 30%, rgb(255 255 255 / 0.9), rgb(255 255 255 / 0.2) 60%);
+  animation: bubble linear infinite;
+}
+
+.stagger > * {
+  animation: var(--animate-rise);
+}
+.stagger > *:nth-child(2) {
+  animation-delay: 60ms;
+}
+.stagger > *:nth-child(3) {
+  animation-delay: 120ms;
+}
+.stagger > *:nth-child(4) {
+  animation-delay: 180ms;
+}
+.stagger > *:nth-child(5) {
+  animation-delay: 240ms;
+}
+.stagger > *:nth-child(6) {
+  animation-delay: 300ms;
+}
+.stagger > *:nth-child(n + 7) {
+  animation-delay: 340ms;
 }
 
 :focus-visible {
   outline: 2px solid var(--color-rose);
   outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .bubbles {
+    display: none;
+  }
 }
 
 @media print {

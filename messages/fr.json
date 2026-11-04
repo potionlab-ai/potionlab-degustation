@@ -15,12 +15,14 @@
       "invalid_code": "Ce code ne correspond à aucune dégustation. Vérifiez-le sur la carte (exemple : K7P-M4X).",
       "too_many_attempts": "Trop d'essais. Patientez 15 minutes puis réessayez.",
       "network": "Connexion impossible. Vérifiez votre réseau et réessayez."
-    }
+    },
+    "subtitle": "Le labo, c’est chez vous maintenant.",
+    "cardField": "Code d’accès"
   },
   "project": {
     "for": "Pour {client}",
     "howTitle": "Comment déguster",
-    "how1": "Bien frais, autour de 4 °C",
+    "how1": "Bien frais, 4 °C (2 h au frigo minimum)",
     "how2": "Dans l'ordre, de A à D",
     "how3": "Un peu d'eau entre chaque canette",
     "iterationsTitle": "Les 4 versions",
@@ -63,7 +65,8 @@
     "toFinal": "Dernière étape",
     "back": "Retour",
     "missing": "Il manque {count} réponse(s), signalée(s) en rose.",
-    "required": "Réponse requise"
+    "required": "Réponse requise",
+    "iteration": "Itération"
   },
   "final": {
     "title": "Votre verdict",
@@ -92,13 +95,16 @@
     "emailInvalid": "Cet email ne semble pas valide.",
     "submit": "Envoyer mes réponses",
     "sending": "Envoi…",
-    "error": "L'envoi a échoué. Vos réponses sont gardées : réessayez dans un instant."
+    "error": "L'envoi a échoué. Vos réponses sont gardées : réessayez dans un instant.",
+    "favourite": "Ma préférée",
+    "kicker": "4 itérations. 1 expérience. Votre choix."
   },
   "thanks": {
     "title": "Merci !",
     "text": "Vos réponses sont bien arrivées au labo. Notre équipe les analyse pour affiner votre recette.",
     "cta": "Découvrir PotionLab",
-    "another": "Une autre personne veut donner son avis"
+    "another": "Une autre personne veut donner son avis",
+    "sign": "L’équipe PotionLab · Liège"
   },
   "already": {
     "title": "Déjà des réponses pour ce code",
@@ -112,6 +118,8 @@
     "language": "Langue",
     "changeCode": "Changer de code",
     "privacyEmail": "production@potionlab.ai",
-    "loading": "Chargement…"
+    "loading": "Chargement…",
+    "motto": "Explorer. Goûter. Créer.",
+    "tasting": "Dégustation"
   }
 }

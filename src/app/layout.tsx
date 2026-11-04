@@ -1,5 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import "@fontsource-variable/outfit";
+import "@fontsource/caveat/600.css";
+import "@fontsource/ibm-plex-mono/500.css";
+import "@fontsource/ibm-plex-mono/600.css";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -17,7 +20,7 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="fr" className="h-full">
-      <body className="min-h-full">{children}</body>
+      <body className="studio min-h-full">{children}</body>
     </html>
   );
 }

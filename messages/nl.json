@@ -15,12 +15,14 @@
       "invalid_code": "Deze code hoort bij geen enkele proeverij. Controleer hem op de kaart (voorbeeld: K7P-M4X).",
       "too_many_attempts": "Te veel pogingen. Wacht 15 minuten en probeer opnieuw.",
       "network": "Geen verbinding. Controleer uw netwerk en probeer opnieuw."
-    }
+    },
+    "subtitle": "Het lab staat nu bij u thuis.",
+    "cardField": "Toegangscode"
   },
   "project": {
     "for": "Voor {client}",
     "howTitle": "Zo proeft u",
-    "how1": "Goed gekoeld, rond 4 °C",
+    "how1": "Goed gekoeld, 4 °C (minstens 2 u in de koelkast)",
     "how2": "In volgorde, van A tot D",
     "how3": "Een slokje water tussen elk blikje",
     "iterationsTitle": "De 4 versies",
@@ -63,7 +65,8 @@
     "toFinal": "Laatste stap",
     "back": "Terug",
     "missing": "Er ontbreken {count} antwoord(en), in roze aangeduid.",
-    "required": "Antwoord vereist"
+    "required": "Antwoord vereist",
+    "iteration": "Iteratie"
   },
   "final": {
     "title": "Uw oordeel",
@@ -92,13 +95,16 @@
     "emailInvalid": "Dit e-mailadres lijkt niet geldig.",
     "submit": "Mijn antwoorden versturen",
     "sending": "Versturen…",
-    "error": "Versturen mislukt. Uw antwoorden zijn bewaard: probeer het zo dadelijk opnieuw."
+    "error": "Versturen mislukt. Uw antwoorden zijn bewaard: probeer het zo dadelijk opnieuw.",
+    "favourite": "Mijn favoriet",
+    "kicker": "4 iteraties. 1 ervaring. Uw keuze."
   },
   "thanks": {
     "title": "Bedankt!",
     "text": "Uw antwoorden zijn goed aangekomen in het lab. Ons team analyseert ze om uw recept te verfijnen.",
     "cta": "Ontdek PotionLab",
-    "another": "Iemand anders wil ook zijn mening geven"
+    "another": "Iemand anders wil ook zijn mening geven",
+    "sign": "Het PotionLab-team · Luik"
   },
   "already": {
     "title": "Al antwoorden voor deze code",
@@ -112,6 +118,8 @@
     "language": "Taal",
     "changeCode": "Andere code",
     "privacyEmail": "production@potionlab.ai",
-    "loading": "Laden…"
+    "loading": "Laden…",
+    "motto": "Ontdekken. Proeven. Creëren.",
+    "tasting": "Proeverij"
   }
 }

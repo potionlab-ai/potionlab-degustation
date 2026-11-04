@@ -12,15 +12,16 @@ export default async function AdminLayout({ children }: { children: React.ReactN
   if (!me?.isAdmin) redirect("/admin/login");
   return (
     <div className="min-h-dvh">
-      <header className="no-print sticky top-0 z-30 border-b border-line bg-paper/90 backdrop-blur">
+      <header className="no-print sticky top-0 z-30 border-b border-white/70 bg-white/70 backdrop-blur-xl">
+        <div className="bg-dots h-1 w-full opacity-70" aria-hidden />
         <div className="mx-auto flex max-w-6xl items-center gap-4 px-4 py-3 sm:px-6">
-          <Link href="/admin" className="shrink-0" aria-label="Tableau de bord">
+          <Link href="/admin" className="flex shrink-0 items-center gap-3" aria-label="Tableau de bord">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/logo.svg" alt="PotionLab" className="h-7 w-auto" />
+            <span className="hidden border-l border-line pl-3 text-[11px] font-medium uppercase tracking-[0.2em] text-muted sm:inline">
+              Labo · admin
+            </span>
           </Link>
-          <span className="hidden rounded-full border border-line bg-white px-2 py-0.5 text-[11px] font-medium uppercase tracking-wider text-muted sm:inline">
-            Labo · admin
-          </span>
           <div className="ml-auto flex items-center gap-3">
             <span className="hidden text-sm text-muted md:inline">{me.email}</span>
             <form action={logoutAction}>

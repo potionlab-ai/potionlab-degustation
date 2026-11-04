@@ -18,6 +18,7 @@ import {
   type Question,
 } from "@/lib/types";
 import {
+  Bubbles,
   CanIcon,
   IconArrowLeft,
   IconArrowRight,
@@ -283,73 +284,83 @@ export default function TastingApp() {
   };
 
   // Rendu --------------------------------------------------------------------
+  const wide = screen === "welcome";
+  const viewKey = screen === "flow" ? `flow-${step}` : screen;
   return (
     <div className="flex min-h-dvh flex-col">
       <Header lang={lang} setLang={setLang} m={m} />
-      <main className="mx-auto w-full max-w-xl flex-1 px-4 pb-16 pt-4 sm:pt-8">
-        {screen === "loading" && <Loading m={m} />}
-        {screen === "welcome" && (
-          <Welcome
-            m={m}
-            value={codeInput}
-            onChange={(v) => {
-              setCodeInput(v);
-              setCodeError(null);
-            }}
-            onSubmit={() => open(codeInput)}
-            error={codeError}
-            busy={busy}
-          />
-        )}
-        {screen === "flow" && qn && step === 0 && (
-          <ProjectIntro
-            m={m}
-            lang={lang}
-            qn={qn}
-            code={code}
-            resumeStep={savedStep}
-            onStart={() => goTo(savedStep > 0 ? savedStep : 1)}
-            onChangeCode={changeCode}
-          />
-        )}
-        {screen === "flow" && qn && step >= 1 && step <= 4 && (
-          <CanStep
-            key={step}
-            m={m}
-            lang={lang}
-            qn={qn}
-            letter={LETTERS[step - 1]}
-            step={step}
-            can={answers.cans?.[LETTERS[step - 1]]}
-            saveState={saveState}
-            onChange={(can) =>
-              update((a) => ({ ...a, cans: { ...(a.cans ?? {}), [LETTERS[step - 1]]: can } }))
-            }
-            onBack={() => goTo(step - 1)}
-            onNext={() => goTo(step + 1)}
-          />
-        )}
-        {screen === "flow" && qn && step === STEP_FINAL && (
-          <FinalStep
-            m={m}
-            qn={qn}
-            answers={answers}
-            saveState={saveState}
-            update={update}
-            onBack={() => goTo(4)}
-            onSubmit={submit}
-          />
-        )}
-        {screen === "thanks" && <Thanks m={m} onAnother={restartForSomeoneElse} />}
-        {screen === "already" && (
-          <Already m={m} onStart={restartForSomeoneElse} onChangeCode={changeCode} />
-        )}
+      <main
+        className={`mx-auto w-full flex-1 px-4 pb-14 pt-6 sm:px-6 sm:pt-10 ${wide ? "max-w-6xl" : "max-w-2xl"}`}
+      >
+        <div key={viewKey} className="animate-rise">
+          {screen === "loading" && <Loading m={m} />}
+          {screen === "welcome" && (
+            <Welcome
+              m={m}
+              value={codeInput}
+              onChange={(v) => {
+                setCodeInput(v);
+                setCodeError(null);
+              }}
+              onSubmit={() => open(codeInput)}
+              error={codeError}
+              busy={busy}
+            />
+          )}
+          {screen === "flow" && qn && step === 0 && (
+            <ProjectIntro
+              m={m}
+              lang={lang}
+              qn={qn}
+              code={code}
+              resumeStep={savedStep}
+              onStart={() => goTo(savedStep > 0 ? savedStep : 1)}
+              onChangeCode={changeCode}
+            />
+          )}
+          {screen === "flow" && qn && step >= 1 && step <= 4 && (
+            <CanStep
+              key={step}
+              m={m}
+              lang={lang}
+              qn={qn}
+              letter={LETTERS[step - 1]}
+              step={step}
+              can={answers.cans?.[LETTERS[step - 1]]}
+              saveState={saveState}
+              onChange={(can) =>
+                update((a) => ({ ...a, cans: { ...(a.cans ?? {}), [LETTERS[step - 1]]: can } }))
+              }
+              onBack={() => goTo(step - 1)}
+              onNext={() => goTo(step + 1)}
+            />
+          )}
+          {screen === "flow" && qn && step === STEP_FINAL && (
+            <FinalStep
+              m={m}
+              qn={qn}
+              answers={answers}
+              saveState={saveState}
+              update={update}
+              onBack={() => goTo(4)}
+              onSubmit={submit}
+            />
+          )}
+          {screen === "thanks" && <Thanks m={m} onAnother={restartForSomeoneElse} />}
+          {screen === "already" && (
+            <Already m={m} onStart={restartForSomeoneElse} onChangeCode={changeCode} />
+          )}
+        </div>
       </main>
-      <footer className="pb-6 text-center text-xs text-faint">
-        PotionLab · Liège ·{" "}
-        <a className="underline-offset-2 hover:underline" href="https://www.potionlab.ai">
-          potionlab.ai
-        </a>
+      <footer className="mx-auto flex w-full max-w-6xl flex-col items-center gap-1.5 px-4 pb-8 pt-4 text-center">
+        <p className="text-brand text-[11px] font-semibold uppercase tracking-[0.28em]">{m.common.motto}</p>
+        <p className="text-xs text-faint">
+          Crafted by{" "}
+          <a className="font-medium text-muted underline-offset-2 hover:underline" href="https://www.potionlab.ai">
+            potionlab.ai
+          </a>{" "}
+          · Liège
+        </p>
       </footer>
     </div>
   );
@@ -360,13 +371,16 @@ export default function TastingApp() {
 // ===========================================================================
 function Header({ lang, setLang, m }: { lang: Lang; setLang: (l: Lang) => void; m: Messages }) {
   return (
-    <header className="mx-auto flex w-full max-w-xl items-center justify-between gap-4 px-4 pt-4 sm:pt-6">
-      <a href="https://www.potionlab.ai" className="shrink-0" aria-label="PotionLab">
+    <header className="mx-auto flex w-full max-w-6xl items-center justify-between gap-4 px-4 pt-4 sm:px-6 sm:pt-6">
+      <a href="https://www.potionlab.ai" className="flex shrink-0 items-center gap-3" aria-label="PotionLab">
         {/* Logo : remplacer le fichier public/logo.svg */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src="/logo.svg" alt="PotionLab" className="h-7 w-auto sm:h-8" />
+        <span className="hidden border-l border-line pl-3 text-[11px] font-medium uppercase tracking-[0.2em] text-muted sm:inline">
+          {m.common.tasting}
+        </span>
       </a>
-      <div role="group" aria-label={m.common.language} className="flex rounded-full border border-line bg-white p-0.5">
+      <div role="group" aria-label={m.common.language} className="seg">
         {LANGS.map((l) => (
           <button
             key={l}
@@ -375,9 +389,7 @@ function Header({ lang, setLang, m }: { lang: Lang; setLang: (l: Lang) => void; 
             aria-pressed={l === lang}
             title={MESSAGES[l].langName}
             lang={l}
-            className={`h-8 min-w-9 rounded-full px-2 text-xs font-semibold uppercase tracking-wide transition ${
-              l === lang ? "bg-ink text-white" : "text-muted hover:text-ink"
-            }`}
+            className="min-w-9 uppercase"
           >
             {l}
           </button>
@@ -389,11 +401,15 @@ function Header({ lang, setLang, m }: { lang: Lang; setLang: (l: Lang) => void; 
 
 function Loading({ m }: { m: Messages }) {
   return (
-    <div className="flex min-h-[50vh] items-center justify-center" aria-busy="true">
-      <div className="flex items-center gap-3 text-muted">
-        <span className="bg-brand h-2.5 w-2.5 animate-pulse rounded-full" />
-        {m.common.loading}
+    <div className="flex min-h-[50vh] flex-col items-center justify-center gap-5" aria-busy="true">
+      <div className="flex items-end gap-2">
+        {LETTERS.map((l, i) => (
+          <div key={l} className="animate-float" style={{ animationDelay: `${i * -0.4}s`, animationDuration: "1.6s" }}>
+            <CanIcon letter={l} size={22} />
+          </div>
+        ))}
       </div>
+      <p className="eyebrow">{m.common.loading}</p>
     </div>
   );
 }
@@ -401,7 +417,7 @@ function Loading({ m }: { m: Messages }) {
 function Progress({ step, m, saveState }: { step: number; m: Messages; saveState: SaveState }) {
   const labels = [...LETTERS, "✓"];
   return (
-    <div className="sticky top-0 z-20 -mx-4 mb-6 bg-paper/90 px-4 pb-3 pt-3 backdrop-blur">
+    <div className="sticky top-2 z-20 mb-7 rounded-2xl border border-white/80 bg-white/80 px-4 pb-2.5 pt-3 shadow-[0_8px_30px_-14px_rgb(60_40_30/0.25)] backdrop-blur-xl">
       <div className="mb-2 flex items-center justify-between text-xs text-muted">
         <span className="font-medium">{fmt(m.can.progress, { current: step, total: 5 })}</span>
         <SaveIndicator state={saveState} m={m} />
@@ -416,8 +432,16 @@ function Progress({ step, m, saveState }: { step: number; m: Messages; saveState
       >
         {labels.map((l, i) => (
           <div key={l} className="flex flex-col items-center gap-1">
-            <div className={`h-1.5 w-full rounded-full ${i < step ? "bg-brand" : "bg-line"}`} />
-            <span className={`text-[11px] font-semibold ${i + 1 === step ? "text-rose" : "text-faint"}`}>{l}</span>
+            <div className="h-1.5 w-full overflow-hidden rounded-full bg-line">
+              <div
+                className={`bg-brand h-full rounded-full transition-[width] duration-700 ease-out ${i < step ? "w-full" : "w-0"}`}
+              />
+            </div>
+            <span
+              className={`font-mono text-[10px] font-semibold ${i + 1 === step ? "text-rose" : i < step ? "text-ink/60" : "text-faint"}`}
+            >
+              {l}
+            </span>
           </div>
         ))}
       </div>
@@ -430,7 +454,11 @@ function SaveIndicator({ state, m }: { state: SaveState; m: Messages }) {
   const text = state === "saving" ? m.common.saving : state === "saved" ? m.common.saved : m.common.offline;
   return (
     <span className="inline-flex items-center gap-1" aria-live="polite">
-      {state === "saved" ? <IconCheck width={14} height={14} className="text-[#2f9e78]" /> : <IconCloud width={14} height={14} />}
+      {state === "saved" ? (
+        <IconCheck width={14} height={14} className="text-[#2f9e78]" />
+      ) : (
+        <IconCloud width={14} height={14} />
+      )}
       {text}
     </span>
   );
@@ -441,20 +469,58 @@ function Section({
   aside,
   children,
   id,
+  n,
 }: {
   title: string;
   aside?: string;
   children: React.ReactNode;
   id?: string;
+  n?: number;
 }) {
   return (
-    <section className="card p-5 sm:p-6" aria-labelledby={id}>
-      <h2 id={id} className="mb-4 text-lg font-semibold leading-snug text-ink">
-        {title}
-        {aside && <span className="ml-2 text-sm font-normal text-faint">({aside})</span>}
-      </h2>
+    <section className="card p-5 sm:p-7" aria-labelledby={id}>
+      <div className="mb-5 flex items-baseline gap-3">
+        {n != null && (
+          <span className="font-mono text-xs font-semibold text-rose" aria-hidden>
+            {String(n).padStart(2, "0")}
+          </span>
+        )}
+        <h2 id={id} className="text-lg font-semibold leading-snug tracking-tight text-ink sm:text-xl">
+          {title}
+          {aside && <span className="ml-2 text-sm font-normal text-faint">({aside})</span>}
+        </h2>
+      </div>
       {children}
     </section>
+  );
+}
+
+function NavButtons({
+  m,
+  onBack,
+  onNext,
+  nextLabel,
+  nextIcon,
+  disabled,
+}: {
+  m: Messages;
+  onBack: () => void;
+  onNext: () => void;
+  nextLabel: string;
+  nextIcon: React.ReactNode;
+  disabled?: boolean;
+}) {
+  return (
+    <div className="mt-7 flex gap-3">
+      <button type="button" className="btn-secondary" onClick={onBack} aria-label={m.can.back}>
+        <IconArrowLeft />
+        <span className="hidden sm:inline">{m.can.back}</span>
+      </button>
+      <button type="button" className="btn-primary flex-1" onClick={onNext} disabled={disabled}>
+        {nextLabel}
+        {nextIcon}
+      </button>
+    </div>
   );
 }
 
@@ -476,68 +542,107 @@ function Welcome({
   error: string | null;
   busy: boolean;
 }) {
-  const errText = error ? (m.welcome.errors as Record<string, string>)[error] ?? m.welcome.errors.invalid_code : null;
+  const errText = error ? ((m.welcome.errors as Record<string, string>)[error] ?? m.welcome.errors.invalid_code) : null;
   return (
-    <div className="space-y-5">
-      <div className="card bg-lab-grid relative overflow-hidden px-6 pb-7 pt-8 sm:px-8 sm:pt-10">
-        <div className="bg-brand pointer-events-none absolute -right-16 -top-16 h-44 w-44 rounded-full opacity-[0.12] blur-2xl" />
-        <p className="kicker">{m.welcome.kicker}</p>
-        <h1 className="mt-3 text-[2.6rem] font-semibold leading-[1.02] tracking-tight text-ink sm:text-5xl">
+    <div className="grid items-center gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16">
+      <div className="stagger">
+        <p className="kicker kicker-bar">{m.welcome.kicker}</p>
+        <h1 className="display mt-6 text-[2.75rem] leading-[0.98] sm:text-6xl lg:text-7xl">
           {m.welcome.title}
           <span className="text-brand">.</span>
         </h1>
-        <p className="mt-4 max-w-md text-[17px] leading-relaxed text-muted">{m.welcome.intro}</p>
-        <div className="mt-6 flex items-end gap-2.5" aria-hidden>
-          {LETTERS.map((l, i) => (
-            <CanIcon key={l} letter={l} size={i === 0 ? 38 : 34} filled={i === 0} />
-          ))}
-        </div>
+        <p className="mt-4 text-xl font-light text-ink sm:text-2xl">{m.welcome.subtitle}</p>
+        <p className="mt-3 max-w-md text-[17px] leading-relaxed text-muted">{m.welcome.intro}</p>
+        <CansShowcase />
       </div>
 
-      <form
-        className="card p-6 sm:p-8"
-        onSubmit={(e) => {
-          e.preventDefault();
-          onSubmit();
-        }}
-        noValidate
-      >
-        <label htmlFor="code" className="label text-base">
-          {m.welcome.codeLabel}
-        </label>
-        <input
-          id="code"
-          name="code"
-          className={`input text-center font-mono text-2xl font-semibold uppercase tracking-[0.25em] ${
-            errText ? "border-rose ring-4 ring-rose/15" : ""
-          }`}
-          value={value}
-          onChange={(e) => onChange(e.target.value.toUpperCase().slice(0, 12))}
-          placeholder={m.welcome.codePlaceholder}
-          autoComplete="off"
-          autoCorrect="off"
-          autoCapitalize="characters"
-          spellCheck={false}
-          enterKeyHint="go"
-          aria-invalid={!!errText}
-          aria-describedby="code-help code-error"
-        />
-        <p id="code-help" className="mt-2 text-sm text-muted">
-          {m.welcome.codeHelp}
-        </p>
-        <p id="code-error" role="alert" className="mt-2 min-h-5 text-sm font-medium text-rose">
-          {errText}
-        </p>
-        <button type="submit" className="btn-primary mt-3 w-full" disabled={busy}>
-          {busy ? m.welcome.checking : m.welcome.submit}
-          {!busy && <IconArrowRight />}
-        </button>
-      </form>
+      <div className="stagger">
+        <form
+          className="card relative overflow-hidden p-6 pt-8 sm:p-8 sm:pt-10"
+          onSubmit={(e) => {
+            e.preventDefault();
+            onSubmit();
+          }}
+          noValidate
+        >
+          <div className="bg-dots absolute inset-x-0 top-0 h-3 opacity-80" aria-hidden />
+          <div className="flex items-start justify-between gap-4">
+            <div>
+              <label htmlFor="code" className="block text-2xl font-semibold tracking-tight">
+                {m.welcome.codeLabel}
+              </label>
+              <p id="code-help" className="mt-1 text-sm leading-snug text-muted">
+                {m.welcome.codeHelp}
+              </p>
+            </div>
+            {/* Rappel visuel : le code est écrit au stylo sur la carte */}
+            <div
+              className="mt-1 shrink-0 rotate-[-4deg] rounded-lg border border-line bg-white px-3 py-2 shadow-[0_6px_16px_-8px_rgb(60_40_30/0.35)]"
+              aria-hidden
+            >
+              <p className="text-[8px] font-semibold uppercase tracking-[0.16em] text-faint">{m.welcome.cardField}</p>
+              <p className="hand -mt-0.5 text-[22px] leading-none">K7P-M4X</p>
+            </div>
+          </div>
+          <input
+            id="code"
+            name="code"
+            className={`input mt-5 h-16 text-center font-mono text-[26px] font-semibold uppercase tracking-[0.22em] sm:text-3xl ${
+              errText ? "border-rose ring-4 ring-rose/15" : ""
+            }`}
+            value={value}
+            onChange={(e) => onChange(e.target.value.toUpperCase().slice(0, 12))}
+            placeholder={m.welcome.codePlaceholder}
+            autoComplete="off"
+            autoCorrect="off"
+            autoCapitalize="characters"
+            spellCheck={false}
+            enterKeyHint="go"
+            aria-invalid={!!errText}
+            aria-describedby="code-help code-error"
+          />
+          <p id="code-error" role="alert" className="mt-2 min-h-5 text-sm font-medium text-rose">
+            {errText}
+          </p>
+          <button type="submit" className="btn-primary mt-2 w-full" disabled={busy}>
+            {busy ? m.welcome.checking : m.welcome.submit}
+            {!busy && <IconArrowRight />}
+          </button>
+        </form>
 
-      <p className="flex items-center justify-center gap-2 px-6 text-center text-xs text-muted">
-        <IconLock width={14} height={14} className="shrink-0" />
-        {m.welcome.privacy}
-      </p>
+        <p className="mt-4 flex items-center justify-center gap-2 px-6 text-center text-xs text-muted">
+          <IconLock width={14} height={14} className="shrink-0" />
+          {m.welcome.privacy}
+        </p>
+      </div>
+    </div>
+  );
+}
+
+/** Les 4 canettes, légèrement flottantes, avec quelques bulles. */
+function CansShowcase() {
+  return (
+    <div className="relative mt-8 h-[150px] max-w-lg sm:mt-10 sm:h-[176px] lg:mt-12 lg:h-[230px]">
+      <div
+        className="bg-dots absolute -left-4 bottom-0 h-14 w-[calc(100%+2rem)] opacity-50 [mask-image:radial-gradient(closest-side,black,transparent)]"
+        aria-hidden
+      />
+      <Bubbles count={14} />
+      <div className="relative flex h-full items-end gap-4 pb-3 sm:gap-5 lg:gap-7">
+        {LETTERS.map((l, i) => (
+          <div
+            key={l}
+            className="animate-float drop-shadow-[0_14px_14px_rgb(60_40_30/0.18)]"
+            style={{ animationDelay: `${i * -1.4}s` }}
+          >
+            <CanIcon
+              letter={l}
+              size={i === 0 ? 62 : 54}
+              className={`h-auto ${i === 0 ? "w-[62px] lg:w-[86px]" : "w-[54px] lg:w-[76px]"}`}
+            />
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
@@ -568,57 +673,66 @@ function ProjectIntro({
     { icon: <IconDrop />, text: m.project.how3 },
   ];
   return (
-    <div className="space-y-5">
-      <div className="px-1 pt-2">
-        <p className="kicker">{fmt(m.project.for, { client: qn.client_name })}</p>
-        <h1 className="mt-2 text-3xl font-semibold leading-tight tracking-tight sm:text-4xl">{qn.project_name}</h1>
-        <div className="mt-3 flex flex-wrap items-center gap-2 text-sm">
-          <span className="rounded-full border border-rose/25 bg-blush px-3 py-1 font-medium text-rose">
+    <div className="stagger space-y-5">
+      <div className="px-1">
+        <p className="kicker kicker-bar">{fmt(m.project.for, { client: qn.client_name })}</p>
+        <h1 className="display mt-5 text-4xl leading-[1.05] sm:text-5xl">{qn.project_name}</h1>
+        <div className="mt-4 flex flex-wrap items-center gap-2 text-sm">
+          <span className="rounded-full bg-brand px-3 py-1 text-xs font-semibold uppercase tracking-[0.12em] text-white">
             {beverageLabel(qn.beverage_type, lang)}
           </span>
-          <span className="rounded-full border border-line bg-white px-3 py-1 font-mono text-xs tracking-widest text-muted">
+          <span className="rounded-full border border-line bg-white/80 px-3 py-1 font-mono text-xs tracking-[0.18em] text-muted">
             {formatCode(code)}
           </span>
         </div>
       </div>
 
-      <Section title={m.project.howTitle}>
-        <ul className="grid gap-3 sm:grid-cols-3">
+      <section className="card p-5 sm:p-7">
+        <p className="eyebrow">{m.project.howTitle}</p>
+        <ol className="mt-4 grid gap-3 sm:grid-cols-3">
           {how.map((h, i) => (
-            <li key={i} className="flex items-center gap-3 rounded-2xl bg-paper px-4 py-3 sm:flex-col sm:items-start">
-              <span className="text-rose">{h.icon}</span>
+            <li key={i} className="flex items-center gap-3 rounded-2xl bg-paper/80 px-4 py-3.5 sm:flex-col sm:items-start sm:gap-2">
+              <span className="flex items-center gap-2 text-rose">
+                <span className="font-mono text-[11px] font-semibold">{String(i + 1).padStart(2, "0")}</span>
+                {h.icon}
+              </span>
               <span className="text-[15px] leading-snug text-ink">{h.text}</span>
             </li>
           ))}
-        </ul>
-      </Section>
+        </ol>
+      </section>
 
-      <Section title={m.project.iterationsTitle}>
-        <ul className="divide-y divide-line">
+      <section className="card p-5 sm:p-7">
+        <p className="eyebrow">{m.project.iterationsTitle}</p>
+        <ul className="mt-4 grid gap-3 sm:grid-cols-2">
           {LETTERS.map((l) => {
             const it = qn.iterations.find((x) => x.letter === l);
             return (
-              <li key={l} className="flex items-start gap-4 py-3 first:pt-0 last:pb-0">
+              <li key={l} className="flex items-center gap-4 rounded-2xl border border-line bg-white px-4 py-3.5">
                 <CanIcon letter={l} size={30} />
-                <div className="pt-1">
-                  <p className="text-xs font-medium uppercase tracking-wider text-faint">{m.can.whatChanges}</p>
-                  <p className="text-[15px] leading-snug text-ink">{it?.change || "—"}</p>
+                <div className="min-w-0">
+                  <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-faint">
+                    {m.can.iteration} {l}
+                  </p>
+                  <p className="hand text-[21px] leading-[1.15]">{it?.change || "—"}</p>
                 </div>
               </li>
             );
           })}
         </ul>
-      </Section>
+      </section>
 
-      <p className="px-1 text-center text-sm text-muted">{m.project.duration}</p>
-      <button type="button" className="btn-primary w-full" onClick={onStart}>
-        {resumeStep > 0 ? m.project.resume : m.project.start}
-        <IconArrowRight />
-      </button>
-      <div className="text-center">
-        <button type="button" className="btn-ghost" onClick={onChangeCode}>
-          {m.common.changeCode}
+      <div className="pt-1">
+        <p className="mb-4 text-center text-sm text-muted">{m.project.duration}</p>
+        <button type="button" className="btn-primary w-full" onClick={onStart}>
+          {resumeStep > 0 ? m.project.resume : m.project.start}
+          <IconArrowRight />
         </button>
+        <div className="mt-2 text-center">
+          <button type="button" className="btn-ghost" onClick={onChangeCode}>
+            {m.common.changeCode}
+          </button>
+        </div>
       </div>
     </div>
   );
@@ -670,26 +784,32 @@ function CanStep({
     onNext();
   };
 
+  let n = 1;
   return (
     <div>
       <Progress step={step} m={m} saveState={saveState} />
-      <div className="mb-5 flex items-center gap-4 px-1">
-        <CanIcon letter={letter} size={44} />
-        <div>
-          <h1 className="text-3xl font-semibold tracking-tight">{fmt(m.can.title, { letter })}</h1>
+      <div className="mb-7 flex items-center gap-5 px-1">
+        <div className="animate-float drop-shadow-[0_12px_12px_rgb(60_40_30/0.18)]">
+          <CanIcon letter={letter} size={52} />
+        </div>
+        <div className="min-w-0">
+          <p className="kicker">
+            {m.can.iteration} {letter}
+          </p>
+          <h1 className="display mt-1 text-4xl">{fmt(m.can.title, { letter })}</h1>
           {change && (
-            <p className="mt-1 text-[15px] leading-snug text-muted">
-              <span className="mr-1.5 text-[11px] font-semibold uppercase tracking-wider text-faint">
+            <p className="mt-1.5 leading-tight">
+              <span className="mr-2 align-middle text-[10px] font-semibold uppercase tracking-[0.16em] text-faint">
                 {m.can.whatChanges}
               </span>
-              {change}
+              <span className="hand align-middle text-[22px]">{change}</span>
             </p>
           )}
         </div>
       </div>
 
-      <div className="space-y-4">
-        <Section title={m.can.overallTitle} id="overall-title">
+      <div className="stagger space-y-4">
+        <Section title={m.can.overallTitle} id="overall-title" n={n++}>
           <div data-invalid={invalid("overall") || undefined}>
             <NineScale
               value={can?.overall}
@@ -705,8 +825,8 @@ function CanStep({
         </Section>
 
         {jarQs.length > 0 && (
-          <Section title={m.can.jarTitle}>
-            <div className="space-y-2">
+          <Section title={m.can.jarTitle} n={n++}>
+            <div className="space-y-1">
               {jarQs.map((q) => (
                 <JarInput
                   key={q.id}
@@ -723,7 +843,7 @@ function CanStep({
         )}
 
         {otherQs.length > 0 && (
-          <Section title={m.can.moreTitle}>
+          <Section title={m.can.moreTitle} n={n++}>
             <div className="space-y-4">
               {otherQs.map((q) => {
                 const v = can?.q?.[q.id];
@@ -781,7 +901,7 @@ function CanStep({
           </Section>
         )}
 
-        <Section title={fmt(m.can.commentLabel, { letter })} aside={m.can.optional}>
+        <Section title={fmt(m.can.commentLabel, { letter })} aside={m.can.optional} n={n++}>
           <TextArea
             value={can?.comment}
             onChange={(v) => onChange({ ...can, comment: v })}
@@ -796,16 +916,13 @@ function CanStep({
         </p>
       )}
 
-      <div className="mt-6 flex gap-3">
-        <button type="button" className="btn-secondary" onClick={onBack} aria-label={m.can.back}>
-          <IconArrowLeft />
-          <span className="hidden sm:inline">{m.can.back}</span>
-        </button>
-        <button type="button" className="btn-primary flex-1" onClick={next}>
-          {step < 4 ? m.can.next : m.can.toFinal}
-          <IconArrowRight />
-        </button>
-      </div>
+      <NavButtons
+        m={m}
+        onBack={onBack}
+        onNext={next}
+        nextLabel={step < 4 ? m.can.next : m.can.toFinal}
+        nextIcon={<IconArrowRight />}
+      />
     </div>
   );
 }
@@ -883,9 +1000,12 @@ function FinalStep({
   return (
     <div>
       <Progress step={5} m={m} saveState={saveState} />
-      <h1 className="mb-5 px-1 text-3xl font-semibold tracking-tight">{m.final.title}</h1>
-      <div className="space-y-4">
-        <Section title={m.final.rankingTitle}>
+      <div className="mb-7 px-1">
+        <p className="kicker kicker-bar">{m.final.kicker}</p>
+        <h1 className="display mt-5 text-4xl">{m.final.title}</h1>
+      </div>
+      <div className="stagger space-y-4">
+        <Section title={m.final.rankingTitle} n={1}>
           <p className="-mt-2 mb-4 text-sm leading-relaxed text-muted">
             {m.final.rankingHelp}
             {prefilled && <span className="mt-1 block text-rose">{m.final.rankingPrefilled}</span>}
@@ -893,11 +1013,11 @@ function FinalStep({
           <Ranking order={ranking} items={items} onChange={(o) => update((a) => ({ ...a, ranking: o }))} m={m} />
         </Section>
 
-        <Section title={m.final.keepTitle} aside={m.can.optional}>
+        <Section title={m.final.keepTitle} aside={m.can.optional} n={2}>
           <div className="space-y-3">
             {LETTERS.map((l) => (
               <div key={l} className="flex items-center gap-3">
-                <CanIcon letter={l} size={24} />
+                <CanIcon letter={l} size={20} />
                 <input
                   className="input"
                   aria-label={`${m.final.keepTitle} ${l}`}
@@ -911,7 +1031,7 @@ function FinalStep({
           </div>
         </Section>
 
-        <Section title={m.final.generalTitle} aside={m.can.optional}>
+        <Section title={m.final.generalTitle} aside={m.can.optional} n={3}>
           <TextArea
             value={answers.general_comment}
             onChange={(v) => update((a) => ({ ...a, general_comment: v }))}
@@ -920,7 +1040,7 @@ function FinalStep({
           />
         </Section>
 
-        <Section title={m.final.contactTitle} aside={m.can.optional}>
+        <Section title={m.final.contactTitle} aside={m.can.optional} n={4}>
           <p className="-mt-2 mb-4 text-sm text-muted">{m.final.contactHelp}</p>
           <div className="grid gap-3 sm:grid-cols-2">
             <div>
@@ -958,7 +1078,9 @@ function FinalStep({
 
         <label
           htmlFor="consent"
-          className={`card flex cursor-pointer items-start gap-3 p-5 ${error === m.final.consentRequired ? "border-rose" : ""}`}
+          className={`card flex cursor-pointer items-start gap-3 p-5 transition ${
+            consent ? "border-rose/30 bg-blush/40" : ""
+          } ${error === m.final.consentRequired ? "border-rose" : ""}`}
         >
           <input
             id="consent"
@@ -982,16 +1104,14 @@ function FinalStep({
         </p>
       )}
 
-      <div className="mt-6 flex gap-3">
-        <button type="button" className="btn-secondary" onClick={onBack} aria-label={m.can.back}>
-          <IconArrowLeft />
-          <span className="hidden sm:inline">{m.can.back}</span>
-        </button>
-        <button type="button" className="btn-primary flex-1" onClick={send} disabled={sending}>
-          {sending ? m.final.sending : m.final.submit}
-          {!sending && <IconCheck />}
-        </button>
-      </div>
+      <NavButtons
+        m={m}
+        onBack={onBack}
+        onNext={send}
+        disabled={sending}
+        nextLabel={sending ? m.final.sending : m.final.submit}
+        nextIcon={sending ? null : <IconCheck />}
+      />
     </div>
   );
 }
@@ -1001,20 +1121,34 @@ function FinalStep({
 // ===========================================================================
 function Thanks({ m, onAnother }: { m: Messages; onAnother: () => void }) {
   return (
-    <div className="card bg-lab-grid relative overflow-hidden px-6 py-12 text-center sm:px-10">
-      <div className="bg-brand mx-auto flex h-20 w-20 items-center justify-center rounded-full text-white shadow-[0_12px_30px_-10px_rgb(232_69_122/0.7)]">
-        <IconCheck width={38} height={38} strokeWidth={2.2} />
-      </div>
-      <h1 className="mt-6 text-4xl font-semibold tracking-tight">{m.thanks.title}</h1>
-      <p className="mx-auto mt-3 max-w-sm text-[17px] leading-relaxed text-muted">{m.thanks.text}</p>
-      <a href="https://www.potionlab.ai" className="btn-primary mt-8 w-full sm:w-auto">
-        {m.thanks.cta}
-        <IconArrowRight />
-      </a>
-      <div className="mt-4">
-        <button type="button" className="btn-ghost" onClick={onAnother}>
-          {m.thanks.another}
-        </button>
+    <div className="card relative overflow-hidden px-6 pb-12 pt-14 text-center sm:px-12">
+      <div className="bg-dots absolute inset-x-0 top-0 h-3 opacity-80" aria-hidden />
+      <Bubbles count={20} />
+      <div className="relative">
+        <div className="flex items-end justify-center gap-3" aria-hidden>
+          {LETTERS.map((l, i) => (
+            <div key={l} style={{ animation: `pop .6s ${0.1 + i * 0.1}s cubic-bezier(.2,.7,.2,1) both` }}>
+              <div className="animate-float" style={{ animationDelay: `${i * -1.3}s` }}>
+                <CanIcon letter={l} size={i === 1 || i === 2 ? 50 : 44} />
+              </div>
+            </div>
+          ))}
+        </div>
+        <h1 className="display mt-8 text-5xl sm:text-6xl">
+          {m.thanks.title.replace(/!$/, "")}
+          <span className="text-brand">!</span>
+        </h1>
+        <p className="mx-auto mt-4 max-w-sm text-[17px] leading-relaxed text-muted">{m.thanks.text}</p>
+        <p className="hand mt-5 text-[26px]">{m.thanks.sign}</p>
+        <a href="https://www.potionlab.ai" className="btn-primary mt-8 w-full sm:w-auto">
+          {m.thanks.cta}
+          <IconArrowRight />
+        </a>
+        <div className="mt-4">
+          <button type="button" className="btn-ghost" onClick={onAnother}>
+            {m.thanks.another}
+          </button>
+        </div>
       </div>
     </div>
   );
@@ -1022,13 +1156,14 @@ function Thanks({ m, onAnother }: { m: Messages; onAnother: () => void }) {
 
 function Already({ m, onStart, onChangeCode }: { m: Messages; onStart: () => void; onChangeCode: () => void }) {
   return (
-    <div className="card px-6 py-10 text-center sm:px-10">
-      <div className="mx-auto flex w-fit gap-2" aria-hidden>
+    <div className="card relative overflow-hidden px-6 pb-10 pt-12 text-center sm:px-10">
+      <div className="bg-dots absolute inset-x-0 top-0 h-3 opacity-80" aria-hidden />
+      <div className="mx-auto flex w-fit items-end gap-2" aria-hidden>
         {LETTERS.map((l) => (
-          <CanIcon key={l} letter={l} size={28} />
+          <CanIcon key={l} letter={l} size={30} />
         ))}
       </div>
-      <h1 className="mt-6 text-2xl font-semibold tracking-tight">{m.already.title}</h1>
+      <h1 className="display mt-6 text-3xl">{m.already.title}</h1>
       <p className="mx-auto mt-3 max-w-sm leading-relaxed text-muted">{m.already.text}</p>
       <button type="button" className="btn-primary mt-7 w-full sm:w-auto" onClick={onStart}>
         {m.already.cta}

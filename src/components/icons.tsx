@@ -106,7 +106,7 @@ export const IconEdit = (p: P) => (
   </svg>
 );
 
-/** Canette stylisée, avec sa lettre. */
+/** Canette en aluminium, bandeau aux couleurs de la boîte et lettre de l'itération. */
 export function CanIcon({
   letter,
   size = 40,
@@ -118,40 +118,104 @@ export function CanIcon({
   filled?: boolean;
   className?: string;
 }) {
-  const id = `can-g-${letter}`;
+  const id = `can-${letter}-${filled ? "f" : "o"}`;
   return (
     <svg
       width={size}
-      height={size * 1.32}
-      viewBox="0 0 40 53"
+      height={size * 1.7}
+      viewBox="0 0 60 102"
       className={`shrink-0 ${className}`}
       aria-hidden
       role="presentation"
     >
       <defs>
-        <linearGradient id={id} x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stopColor="#E8457A" />
-          <stop offset="1" stopColor="#F28C5B" />
+        <linearGradient id={`${id}-metal`} x1="0" x2="1" y1="0" y2="0">
+          <stop offset="0" stopColor="#bdb6b0" />
+          <stop offset="0.18" stopColor="#f3f0ed" />
+          <stop offset="0.42" stopColor="#cfc9c4" />
+          <stop offset="0.7" stopColor="#efebe8" />
+          <stop offset="1" stopColor="#aaa39d" />
         </linearGradient>
+        <linearGradient id={`${id}-label`} x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stopColor={filled ? "#E8457A" : "#FFFFFF"} />
+          <stop offset="1" stopColor={filled ? "#F28C5B" : "#F8F5F2"} />
+        </linearGradient>
+        <linearGradient id={`${id}-shade`} x1="0" x2="1" y1="0" y2="0">
+          <stop offset="0" stopColor="#000" stopOpacity="0.16" />
+          <stop offset="0.22" stopColor="#fff" stopOpacity="0.28" />
+          <stop offset="0.45" stopColor="#fff" stopOpacity="0" />
+          <stop offset="0.85" stopColor="#000" stopOpacity="0.06" />
+          <stop offset="1" stopColor="#000" stopOpacity="0.2" />
+        </linearGradient>
+        <pattern id={`${id}-dots`} width="5" height="5" patternUnits="userSpaceOnUse">
+          <circle cx="1.2" cy="1.2" r="0.75" fill={filled ? "#fff" : "#E8457A"} fillOpacity={filled ? 0.32 : 0.35} />
+        </pattern>
       </defs>
-      <path
-        d="M6 6.5C6 4 9 2 13 2h14c4 0 7 2 7 4.5l1.5 3V44l-1.5 3c0 2.5-3 4-7 4H13c-4 0-7-1.5-7-4l-1.5-3V9.5z"
-        fill={filled ? `url(#${id})` : "#fff"}
-        stroke={filled ? "none" : "#E8E3DD"}
-        strokeWidth="1.5"
-      />
-      <path d="M6.5 9.5h27M6.5 44h27" stroke={filled ? "rgb(255 255 255 / .45)" : "#E8E3DD"} strokeWidth="1.2" />
+      {/* corps */}
+      <path d="M7 12 Q7 8 11 7 L49 7 Q53 8 53 12 L54 18 L54 86 L53 92 Q53 96 49 97 L11 97 Q7 96 7 92 L6 86 L6 18 Z" fill={`url(#${id}-metal)`} />
+      {/* couvercle */}
+      <ellipse cx="30" cy="8" rx="21" ry="4" fill="#d8d3ce" />
+      <ellipse cx="30" cy="8.3" rx="16" ry="2.8" fill="#bcb5af" />
+      <rect x="25.5" y="6.3" width="9" height="3" rx="1.5" fill="#e6e2de" />
+      {/* bandeau imprimé */}
+      <rect x="6" y="22" width="48" height="60" fill={`url(#${id}-label)`} />
+      <rect x="6" y="22" width="48" height="60" fill={`url(#${id}-dots)`} />
+      {!filled && <rect x="6" y="22" width="48" height="60" fill="none" stroke="#E7E1DB" strokeWidth="0.8" />}
       <text
-        x="20"
-        y="32.5"
+        x="30"
+        y="34"
         textAnchor="middle"
         fontFamily="Outfit Variable, Outfit, sans-serif"
         fontWeight="600"
-        fontSize="17"
+        fontSize="5"
+        letterSpacing="1.2"
+        fill={filled ? "#fff" : "#E8457A"}
+        fillOpacity="0.9"
+      >
+        ITERATION
+      </text>
+      <text
+        x="30"
+        y="64"
+        textAnchor="middle"
+        fontFamily="Outfit Variable, Outfit, sans-serif"
+        fontWeight="600"
+        fontSize="28"
         fill={filled ? "#fff" : "#2B2B2B"}
       >
         {letter}
       </text>
+      <rect x="6" y="22" width="48" height="60" fill={`url(#${id}-shade)`} />
+      <path d="M6 18 L54 18 M6 86 L54 86" stroke="#9f9893" strokeOpacity="0.45" strokeWidth="0.8" />
     </svg>
+  );
+}
+
+/** Quelques bulles qui montent (effet pétillant, désactivé si l'utilisateur réduit les animations). */
+export function Bubbles({ count = 12, className = "" }: { count?: number; className?: string }) {
+  const items = Array.from({ length: count }, (_, i) => {
+    const r = (n: number) => ((Math.sin((i + 1) * n) + 1) / 2);
+    return {
+      left: `${Math.round(r(12.9898) * 100)}%`,
+      size: 4 + Math.round(r(78.233) * 9),
+      duration: 5 + r(3.7) * 6,
+      delay: -r(9.1) * 10,
+    };
+  });
+  return (
+    <div className={`bubbles ${className}`} aria-hidden>
+      {items.map((b, i) => (
+        <span
+          key={i}
+          style={{
+            left: b.left,
+            width: b.size,
+            height: b.size,
+            animationDuration: `${b.duration.toFixed(2)}s`,
+            animationDelay: `${b.delay.toFixed(2)}s`,
+          }}
+        />
+      ))}
+    </div>
   );
 }

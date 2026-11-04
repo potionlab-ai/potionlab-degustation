@@ -15,12 +15,14 @@
       "invalid_code": "This code doesn't match any tasting. Please check it on your card (example: K7P-M4X).",
       "too_many_attempts": "Too many attempts. Please wait 15 minutes and try again.",
       "network": "Can't connect. Check your connection and try again."
-    }
+    },
+    "subtitle": "The lab is at your place now.",
+    "cardField": "Access code"
   },
   "project": {
     "for": "For {client}",
     "howTitle": "How to taste",
-    "how1": "Well chilled, around 4 °C (39 °F)",
+    "how1": "Well chilled, 4 °C (at least 2 h in the fridge)",
     "how2": "In order, from A to D",
     "how3": "A sip of water between each can",
     "iterationsTitle": "The 4 versions",
@@ -63,7 +65,8 @@
     "toFinal": "Final step",
     "back": "Back",
     "missing": "{count} answer(s) missing, highlighted in pink.",
-    "required": "Answer required"
+    "required": "Answer required",
+    "iteration": "Iteration"
   },
   "final": {
     "title": "Your verdict",
@@ -92,13 +95,16 @@
     "emailInvalid": "This email doesn't look valid.",
     "submit": "Send my answers",
     "sending": "Sending…",
-    "error": "Sending failed. Your answers are kept: please try again in a moment."
+    "error": "Sending failed. Your answers are kept: please try again in a moment.",
+    "favourite": "My favourite",
+    "kicker": "4 iterations. 1 experience. Your choice."
   },
   "thanks": {
     "title": "Thank you!",
     "text": "Your answers have reached the lab. Our team is analysing them to fine-tune your recipe.",
     "cta": "Discover PotionLab",
-    "another": "Someone else wants to give feedback"
+    "another": "Someone else wants to give feedback",
+    "sign": "The PotionLab team · Liège"
   },
   "already": {
     "title": "Answers already sent for this code",
@@ -112,6 +118,8 @@
     "language": "Language",
     "changeCode": "Use another code",
     "privacyEmail": "production@potionlab.ai",
-    "loading": "Loading…"
+    "loading": "Loading…",
+    "motto": "Explore. Taste. Create.",
+    "tasting": "Tasting"
   }
 }

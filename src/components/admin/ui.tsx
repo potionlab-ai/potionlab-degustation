@@ -33,9 +33,11 @@ export function PageHeader({
   title,
   children,
   back,
+  subtitle,
 }: {
   kicker?: string;
   title: string;
+  subtitle?: string;
   children?: React.ReactNode;
   back?: { href: string; label: string };
 }) {
@@ -47,8 +49,9 @@ export function PageHeader({
             ← {back.label}
           </Link>
         )}
-        {kicker && <p className="kicker">{kicker}</p>}
-        <h1 className="mt-1 text-2xl font-semibold tracking-tight sm:text-3xl">{title}</h1>
+        {kicker && <p className="kicker kicker-bar">{kicker}</p>}
+        <h1 className="display mt-4 text-3xl leading-tight sm:text-4xl">{title}</h1>
+        {subtitle && <p className="mt-2 max-w-2xl text-[15px] text-muted">{subtitle}</p>}
       </div>
       {children && <div className="flex flex-wrap gap-2">{children}</div>}
     </div>

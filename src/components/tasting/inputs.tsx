@@ -42,9 +42,9 @@ export function NineScale({
               aria-label={labels ? `${n} · ${labels[n - 1]}` : String(n)}
               onClick={() => onChange(n)}
               className={cx(
-                "flex h-12 items-center justify-center rounded-xl border text-base font-medium tabular-nums transition sm:h-14 sm:text-lg",
+                "flex h-12 items-center justify-center rounded-xl border text-base font-medium tabular-nums transition duration-200 sm:h-14 sm:rounded-2xl sm:text-lg",
                 selected
-                  ? "bg-brand border-transparent text-white shadow-[0_6px_14px_-6px_rgb(232_69_122/0.7)]"
+                  ? "bg-brand scale-[1.06] border-transparent text-white shadow-[0_8px_18px_-8px_rgb(232_69_122/0.8)]"
                   : invalid
                     ? "border-rose/40 bg-blush/60 text-ink"
                     : "border-line bg-white text-ink hover:border-ink/25",
@@ -55,6 +55,10 @@ export function NineScale({
           );
         })}
       </div>
+      <div
+        className="mt-3 h-1 rounded-full bg-gradient-to-r from-line via-coral/50 to-rose/80"
+        aria-hidden
+      />
       <div className="mt-2 flex justify-between gap-4 text-xs leading-tight text-muted">
         <span className="max-w-[45%]">1 · {lowLabel}</span>
         <span className="max-w-[45%] text-right">9 · {highLabel}</span>
@@ -100,7 +104,7 @@ export function JarInput({
         {label}
         {invalid && <span className="ml-2 text-xs font-normal text-rose">{requiredText}</span>}
       </p>
-      <div role="radiogroup" aria-labelledby={id} className="grid grid-cols-3 gap-1 rounded-2xl bg-paper p-1">
+      <div role="radiogroup" aria-labelledby={id} className="grid grid-cols-3 gap-1 rounded-full bg-ink/[0.05] p-1">
         {(["low", "ok", "high"] as JarValue[]).map((v) => {
           const selected = value === v;
           return (
@@ -111,8 +115,10 @@ export function JarInput({
               aria-checked={selected}
               onClick={() => onChange(v)}
               className={cx(
-                "min-h-11 rounded-xl px-1 text-sm font-medium transition sm:text-[15px]",
-                selected ? "bg-brand text-white shadow-sm" : "text-muted hover:bg-white hover:text-ink",
+                "min-h-11 rounded-full px-1 text-sm font-medium transition duration-200 sm:text-[15px]",
+                selected
+                  ? "bg-brand text-white shadow-[0_6px_14px_-8px_rgb(232_69_122/0.9)]"
+                  : "text-muted hover:bg-white/80 hover:text-ink",
               )}
             >
               {options[v]}

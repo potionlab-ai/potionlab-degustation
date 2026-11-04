@@ -15,12 +15,14 @@
       "invalid_code": "Este código no corresponde a ninguna cata. Compruébelo en la tarjeta (ejemplo: K7P-M4X).",
       "too_many_attempts": "Demasiados intentos. Espere 15 minutos y vuelva a intentarlo.",
       "network": "No hay conexión. Compruebe su red y vuelva a intentarlo."
-    }
+    },
+    "subtitle": "El laboratorio, ahora en su casa.",
+    "cardField": "Código de acceso"
   },
   "project": {
     "for": "Para {client}",
     "howTitle": "Cómo catar",
-    "how1": "Bien fría, a unos 4 °C",
+    "how1": "Bien fría, 4 °C (mínimo 2 h en la nevera)",
     "how2": "En orden, de la A a la D",
     "how3": "Un poco de agua entre cada lata",
     "iterationsTitle": "Las 4 versiones",
@@ -63,7 +65,8 @@
     "toFinal": "Último paso",
     "back": "Volver",
     "missing": "Faltan {count} respuesta(s), marcadas en rosa.",
-    "required": "Respuesta obligatoria"
+    "required": "Respuesta obligatoria",
+    "iteration": "Iteración"
   },
   "final": {
     "title": "Su veredicto",
@@ -92,13 +95,16 @@
     "emailInvalid": "Este correo no parece válido.",
     "submit": "Enviar mis respuestas",
     "sending": "Enviando…",
-    "error": "El envío ha fallado. Sus respuestas están guardadas: inténtelo de nuevo en un momento."
+    "error": "El envío ha fallado. Sus respuestas están guardadas: inténtelo de nuevo en un momento.",
+    "favourite": "Mi favorita",
+    "kicker": "4 iteraciones. 1 experiencia. Su elección."
   },
   "thanks": {
     "title": "¡Gracias!",
     "text": "Sus respuestas han llegado al laboratorio. Nuestro equipo las analiza para afinar su receta.",
     "cta": "Descubrir PotionLab",
-    "another": "Otra persona quiere dar su opinión"
+    "another": "Otra persona quiere dar su opinión",
+    "sign": "El equipo de PotionLab · Lieja"
   },
   "already": {
     "title": "Ya hay respuestas para este código",
@@ -112,6 +118,8 @@
     "language": "Idioma",
     "changeCode": "Cambiar de código",
     "privacyEmail": "production@potionlab.ai",
-    "loading": "Cargando…"
+    "loading": "Cargando…",
+    "motto": "Explorar. Probar. Crear.",
+    "tasting": "Cata"
   }
 }
